@@ -22,11 +22,21 @@ Con las dos capas activas, es prácticamente imposible que se te escape un commi
 
 ## Instalación en 1 paso
 
-### Windows (PowerShell)
+### Windows (PowerShell) — un solo archivo
+
+`instalar-todo.ps1` trae todo adentro (el hook incluido), así que no hace falta clonar el repo.
+Descargalo y ejecutalo:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File instalar-windows.ps1
+Invoke-WebRequest https://raw.githubusercontent.com/Alex-Perales/mi-repo-mis-commits/main/instalar-todo.ps1 -OutFile instalar-todo.ps1
+powershell -ExecutionPolicy Bypass -File instalar-todo.ps1
 ```
+
+> Si el repo es privado, el enlace de descarga no funciona: clonalo con `git clone` y corré
+> `instalar-todo.ps1` desde la carpeta.
+
+(La versión anterior, `instalar-windows.ps1`, sigue disponible pero necesita la carpeta
+`git-hooks/` al lado, es decir, el repo clonado.)
 
 ### Mac / Linux
 
@@ -34,7 +44,7 @@ powershell -ExecutionPolicy Bypass -File instalar-windows.ps1
 sh instalar-mac-linux.sh
 ```
 
-Cualquiera de los dos scripts hace lo mismo:
+Los scripts de instalación hacen lo mismo:
 
 - Crea (o fusiona, sin borrar tus otros ajustes) `~/.claude/settings.json` con:
   ```json
@@ -92,6 +102,7 @@ verificá con `/status` dentro de Claude Code que cargó el archivo.
 ```
 claude-settings/settings.json   -> plantilla del ajuste de Claude Code
 git-hooks/commit-msg            -> hook que limpia el mensaje de commit
-instalar-windows.ps1            -> instalador para Windows (PowerShell)
+instalar-todo.ps1               -> instalador de Windows en un solo archivo (recomendado)
+instalar-windows.ps1            -> instalador para Windows (necesita git-hooks/ al lado)
 instalar-mac-linux.sh           -> instalador para Mac/Linux (sh)
 ```
